@@ -189,7 +189,15 @@ class NeuralNetwork:
         #print(dA_curr.shape, "dC/da shape")
         #print(dc_dzl.shape, "dc/dz shape")
         #print(A_prev.shape, "dC/da[l-1] shape")
-        dW_curr = np.sum(A_prev.T.dot(dc_dzl), axis=0)  # dC/dw[l] = dC/dz[l] * dz[l]/dw[l]
+        dc_dw = A_prev.T.dot(dc_dzl)
+        #print(dc_dw.shape)
+
+        '''try:
+            dc_dw = A_prev.T.dot(dc_dzl)
+            print(dc_dw.shape)
+        except ValueError:
+            dc_dw = A_prev.T.dot(dc_dzl.T)'''
+        dW_curr = np.sum(dc_dw, axis=0)  # dC/dw[l] = dC/dz[l] * dz[l]/dw[l]
         #dW_curr = A_prev.T.dot(dc_dzl)
         #print(dW_curr.shape, "dc/dw shape ****")
         db_curr = np.sum(dc_dzl * 1, axis=0)  # dC/db[l] = dC/dz[l] * dz[l]/db[l]
@@ -425,6 +433,7 @@ class NeuralNetwork:
             dA: ArrayLike
                 partial derivative of loss with respect to A matrix.
         """
+
         dC_dZ = y_hat - y  # https://www.pinecone.io/learn/cross-entropy-loss/
         return dC_dZ
 

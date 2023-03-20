@@ -5,6 +5,7 @@ import pathlib
 PARENT_PARENT_FOLDER = pathlib.Path(__file__).parent.parent.resolve()
 sys.path.insert(0, str(PARENT_PARENT_FOLDER))
 from nn import nn as nn
+from nn import preprocess
 
 
 def test_single_forward():
@@ -69,4 +70,5 @@ def test_sample_seqs():
     pass
 
 def test_one_hot_encode_seqs():
-    pass
+    one_hot_seq = preprocess.one_hot_encode_seqs(['AGA'])
+    assert one_hot_seq == [[1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0]]

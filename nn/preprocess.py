@@ -4,6 +4,7 @@ from typing import List, Tuple
 from numpy.typing import ArrayLike
 import random
 
+
 def sample_seqs(seqs: List[str], labels: List[bool]) -> Tuple[List[str], List[bool]]:
     """
     This function should sample the given sequences to account for class imbalance. 
@@ -85,6 +86,7 @@ def one_hot_encode_seqs(seq_arr: List[str]) -> ArrayLike:
             seq_arr_one_hot += one_hot
         seqs_arr_one_hot.append(seq_arr_one_hot)
     return seqs_arr_one_hot
+
 
 def reformat_pos_neg_seqs(pos_seqs: List, neg_seqs: List):
     """

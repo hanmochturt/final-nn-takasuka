@@ -192,11 +192,6 @@ class NeuralNetwork:
         dc_dw = A_prev.T.dot(dc_dzl)
         #print(dc_dw.shape)
 
-        '''try:
-            dc_dw = A_prev.T.dot(dc_dzl)
-            print(dc_dw.shape)
-        except ValueError:
-            dc_dw = A_prev.T.dot(dc_dzl.T)'''
         dW_curr = np.sum(dc_dw, axis=0)  # dC/dw[l] = dC/dz[l] * dz[l]/dw[l]
         #dW_curr = A_prev.T.dot(dc_dzl)
         #print(dW_curr.shape, "dc/dw shape ****")

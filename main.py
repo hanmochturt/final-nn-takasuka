@@ -11,8 +11,11 @@ seqs, labels = preprocess.reformat_pos_neg_seqs(rap_1_seqs, negative_seqs)
 balanced_seqs, balanced_labels = preprocess.sample_seqs(seqs, labels)
 balanced_one_hot_seqs = preprocess.one_hot_encode_seqs(balanced_seqs)
 
+one_layer = [{'input_dim': 3, 'output_dim': 2, 'activation': 'linear'}]
+n = nn.NeuralNetwork(one_layer, 0.01, 4, 5, 4, "MAE")
+
 x_train, x_test, y_train, y_test = train_test_split(np.array(balanced_one_hot_seqs), \
-                                                              np.array(balanced_labels))
+                                                             np.array(balanced_labels))
 
 #print(x_train[0])
 print(x_train.shape, "x train shape")
@@ -22,8 +25,6 @@ print(y_test.shape, "y test shape")
 
 layers = [{'input_dim': 68, 'output_dim': 32, 'activation': 'relu'},
           {'input_dim': 32, 'output_dim': 1, 'activation': 'sigmoid'}]
-
-n = nn.NeuralNetwork(layers, 0.001, 4, 5, 15, "BCE") #BCE or MSE
 
 final, cache = n.forward(x_train)
 #grad_dict = n.backprop(final, y_train_one_hot, cache)

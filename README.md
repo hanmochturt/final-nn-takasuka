@@ -1,3 +1,5 @@
+![BuildStatus](https://github.com/hanmochturt/final-nn-takasuka/actions/workflows/test.yml/badge.svg?)
+
 # Final project: neural network
 
 ## Overview

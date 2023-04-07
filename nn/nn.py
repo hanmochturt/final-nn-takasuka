@@ -185,8 +185,8 @@ class NeuralNetwork:
             dc_dzl = self._sigmoid_backprop(dA_prev, Z_curr)
         elif activation_curr == 'relu':
             dc_dzl = self._relu_backprop(dA_prev, Z_curr)
-        dc_dw = A_prev.T.dot(dc_dzl)
-        dW_curr = np.sum(dc_dw, axis=0)  # dC/dw[l] = dC/dz[l] * dz[l]/dw[l]
+        dc_dw = A_prev.T.dot(dc_dzl)  # dC/dw[l] = dC/dz[l] * dz[l]/dw[l]
+        dW_curr = np.sum(dc_dw, axis=0)
         db_curr = np.sum(dc_dzl * 1, axis=0)  # dC/db[l] = dC/dz[l] * dz[l]/db[l]
         return dA_prev, dW_curr, db_curr
 
